@@ -1,26 +1,22 @@
 // import { ThemeProvider } from "@emotion/react";
-import { Typography, Button } from "@mui/material"
-import { useTheme,ThemeProvider } from "./context-api/ThemeContext"
 import "./App.css"
+import { RecoilRoot } from "recoil"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { LandingPage } from "./pages/LandingPage";
 
 
-function App() {
-const{theme,toggleTheme} = useTheme();
+export default function App() {
+// const{theme,toggleTheme} = useTheme();
 
   return (
-    <div className={`App ${theme}`} style={{display:'flex',flexDirection:"column",alignItems:'center',gap:'2rem'}}>
-      <Typography variant="h1">Theme Switcher</Typography>
-      <Typography variant="h6">Current Theme :  {theme}</Typography>
-      <Button variant={theme === 'light' ? 'outlined' :'contained'} color="success" onClick={toggleTheme}>Toggle Theme</Button>
-    </div>
+    <RecoilRoot>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<LandingPage/>}></Route>
+      </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   )
 }
 
 
-export default function ThemedApp(){
-  return (
-    <ThemeProvider>
-      <App/>
-    </ThemeProvider>
-  )
-}
